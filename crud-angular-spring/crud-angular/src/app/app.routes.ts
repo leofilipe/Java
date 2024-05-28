@@ -1,3 +1,4 @@
+import { MatTable } from '@angular/material/table';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
