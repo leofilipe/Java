@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+@use './app/styles/deep-purple-theme.scss';
+@use './app/styles/custom-app-theme.scss';
+
+@include mat.core();
+
+//$custom-app-primary: mat.palette($mat-blue);
+//$custom-app-secondary: mat.palette($mat-indigo,A200, A400, 700);
+//$custom-app-primary: mat.palette($mat-red);
+//$custom-accent: mat.define-palette($pink-palette, A200, A100, A400);
+
+/*html {
+    // Apply the light theme by default
+    @include mat.core-theme($custom-app-theme);
+    @include mat.button-theme($custom-app-theme);
+  }*/
+
+html {@include mat.all-component-themes(custom-app-theme.$magenta-theme)}
+//html{@include mat.all-component-themes(deep-purple-theme.$dark-theme)}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
