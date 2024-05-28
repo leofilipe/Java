@@ -6,5 +6,5 @@ export interface Client {
     name: string;
     birth: string;
     gender: string;
-    //addresses: Address[];
+    //addresses: Address[]; //later
 }

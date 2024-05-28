@@ -16,10 +16,6 @@ export class ClientsComponent {
   displayedColumns: string[];
 
   constructor(){
-    /*_cpf:string;
-    name: string;
-    birth: string;
-    gender: string; */
     this.clients = [
       { _cpf: '055.671.004-50', name: 'Leonardo Carvalho', gender: 'M', birth: '06/15/1985'}
     ];
