@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Client } from '../model/client';
 
 import { MatTableModule } from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatCardModule],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.scss'
 })

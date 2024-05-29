@@ -17,8 +17,13 @@
     @include mat.button-theme($custom-app-theme);
   }*/
 
-//html{@include mat.all-component-themes(deep-purple-theme.$dark-theme)}
+html{
+    //@include mat.core-theme(custom-app-theme.$magenta-theme);
+    //@include mat.all-component-themes(custom-app-theme.$dark-theme);
+    @include mat.all-component-themes(deep-purple-theme.$light-theme);
+   //@include mat.all-component-colors(deep-purple-theme.$dark-theme);
+}
 
-html {@include mat.all-component-themes(custom-app-theme.$magenta-theme)}
+//html {@include mat.all-component-themes(custom-app-theme.$magenta-theme)}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
