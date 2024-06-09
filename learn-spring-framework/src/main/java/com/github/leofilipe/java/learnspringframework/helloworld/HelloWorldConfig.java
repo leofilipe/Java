@@ -1,4 +1,4 @@
-package com.github.leofilipe.java.learnspringframework;
+package com.github.leofilipe.java.learnspringframework.helloworld;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
