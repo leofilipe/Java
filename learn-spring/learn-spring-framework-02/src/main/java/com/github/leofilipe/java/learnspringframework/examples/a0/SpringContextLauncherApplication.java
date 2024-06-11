@@ -1,4 +1,4 @@
-package com.github.leofilipe.java.learnspringframework;
+package com.github.leofilipe.java.learnspringframework.examples.a0;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -12,13 +12,13 @@ import com.github.leofilipe.java.learnspringframework.game.GamingConsole;
 
 @Configuration
 @ComponentScan("com.github.leofilipe.java.learnspringframework.game")
-public class GameAppLauncherApplication {
+public class SpringContextLauncherApplication {
 
 
 	
 	public static void main(String[] args) {
 		
-		try(var context = new AnnotationConfigApplicationContext(GameAppLauncherApplication.class)){
+		try(var context = new AnnotationConfigApplicationContext(SpringContextLauncherApplication.class)){
 			
 			context.getBean(GamingConsole.class).up(); //03 Gaming Consoles, still needs fixing
 			context.getBean(GameRunner.class).run();
