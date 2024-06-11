@@ -7,11 +7,16 @@ public class GameRunner {
 
 	private GamingConsole game;
 	
-	public GameRunner(GamingConsole game) {
+	public GameRunner(//@Qualifier("SuperContraGameQualifier") 
+						GamingConsole game) {
 
 		this.game = game;
 	}
 
+	public GameRunner setGamingConsole(GamingConsole game) {
+		this.game = game;
+		return this;
+	}
 	public void run() {
 
 		System.out.println("Running game: " + game);
