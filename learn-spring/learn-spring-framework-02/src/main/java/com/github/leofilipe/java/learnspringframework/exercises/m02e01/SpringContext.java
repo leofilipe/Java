@@ -13,13 +13,16 @@ public class SpringContext {
 	public static void main(String[] args) {
 		try(var context = new AnnotationConfigApplicationContext(SpringContext.class)){
 			
+			Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+			
+			System.out.println("Max value: " + context.getBean(BusinessCalculationService.class).findMax());
+			
+			
 			Arrays.stream(context.getBeanNamesForType(DataService.class)).forEach(name -> {
 				
 				DataService serv = (DataService)context.getBean(name);
 				
 				System.out.println(Arrays.toString(serv.retrieveData()));
-				
-				//System.out.println("Max value: " + context.getBean(BusinessCalculationService.class).findMax());
 				
 				BusinessCalculationService bc = context.getBean(BusinessCalculationService.class);
 				bc.setDataService(serv);
