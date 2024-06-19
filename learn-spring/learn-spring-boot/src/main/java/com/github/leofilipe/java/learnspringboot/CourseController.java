@@ -1,4 +1,4 @@
-package com.github.leofilipe.java.learn_spring_boot;
+package com.github.leofilipe.java.learnspringboot;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,8 @@ public class CourseController {
 		
 		return Arrays.asList(
 				new Course(1, "Learn AWS", "in28minutes"),
-				new Course(2, "Learn DevOps", "in28minutes")
+				new Course(2, "Learn DevOps", "in28minutes"),
+				new Course(3, "Learn Azure", "in28minutes")
 				);
 	}
 }

@@ -1,4 +1,4 @@
-package com.github.leofilipe.java.learn_spring_boot;
+package com.github.leofilipe.java.learnspringboot;
 
 public class Course {
 
