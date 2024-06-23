@@ -1,4 +1,4 @@
-package com.github.leofilipe.springboot.todo_app.hello_app;
+package com.github.leofilipe.springboot.todo_app.tryout.hello_app;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
