@@ -3,13 +3,13 @@
 <head>
 <link href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"
 	rel="stylesheet" />
-<title>Lista de afazeres</title>
+<title>Lista de tarefas</title>
 </head>
 <body>
 	<div class="container">
 		<h3>Bem-vindo ${name}!</h3>
 		<hr />
-		<h1>Lista de afazeres</h1>
+		<h1>Lista de tarefas</h1>
 
 		<table class="table">
 			<thead>
@@ -31,6 +31,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="add-todo" class="btn btn-success">Adicionar tarefa</a>
 	</div>
 	<script type="text/javascript"
 		src="webjars/bootstrap/5.3.3/js/bootstrap.min.js"></script>
