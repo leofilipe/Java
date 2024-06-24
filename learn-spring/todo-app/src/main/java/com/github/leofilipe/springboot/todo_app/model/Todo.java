@@ -6,16 +6,16 @@ public class Todo {
 
 	private int id;
 	private String username;
-	private String descritption;
+	private String description;
 	private LocalDate targetDate;
 	private boolean done;
 	
 	
-	public Todo(int id, String username, String descritption, LocalDate targetDate, boolean done) {
+	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
 		this.username = username;
-		this.descritption = descritption;
+		this.description = description;
 		this.targetDate = targetDate;
 		this.done = done;
 	}
@@ -40,13 +40,13 @@ public class Todo {
 		this.username = username;
 	}
 	
-	public String getDescritption() {
-		return descritption;
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setDescritption(String descritption) {
-		this.descritption = descritption;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 

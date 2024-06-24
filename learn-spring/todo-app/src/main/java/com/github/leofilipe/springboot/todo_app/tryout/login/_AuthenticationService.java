@@ -3,7 +3,7 @@ package com.github.leofilipe.springboot.todo_app.tryout.login;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService {
+public class _AuthenticationService {
 
 	public boolean authenticate(String username, String password) {
 		
