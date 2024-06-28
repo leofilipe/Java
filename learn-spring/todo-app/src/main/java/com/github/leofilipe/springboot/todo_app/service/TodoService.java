@@ -3,10 +3,13 @@ package com.github.leofilipe.springboot.todo_app.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
 import com.github.leofilipe.springboot.todo_app.model.Todo;
+
+import jakarta.validation.Valid;
 
 @Service
 public class TodoService {
@@ -26,9 +29,34 @@ public class TodoService {
 		return todos;
 	}
 
+	public Todo findById(int id) {
+
+		Predicate<? super Todo> predicate = todo -> todo.getId() == id;
+		Todo todo = todos.stream().filter(predicate).findFirst().get();
+
+		return todo;
+	}
+
 	public void addTodo(String username, String description, LocalDate targetDate, boolean isDone) {
 
 		Todo todo = new Todo(++todosCount, username, description, targetDate, isDone);
 		todos.add(todo);
+	}
+
+	public void deleteTodo(int id) {
+
+		Predicate<? super Todo> predicate = todo -> todo.getId() == id;
+		todos.removeIf(predicate);
+	}
+
+	public void updateTodo(@Valid Todo todo) {
+		// TODO Auto-generated method stub
+
+		Predicate<? super Todo> predicate = aTodo -> aTodo.getId() == todo.getId();
+		Todo aTodo = todos.stream().filter(predicate).findFirst().get();
+		
+		aTodo.setDescription(todo.getDescription());
+		aTodo.setTargetDate(todo.getTargetDate());
+
 	}
 }

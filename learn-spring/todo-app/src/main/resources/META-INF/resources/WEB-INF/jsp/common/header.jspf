@@ -1,0 +1,12 @@
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<html>
+<head>
+<link rel="stylesheet"
+	href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="webjars/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.standalone.min.css">
+<title>Gerenciar tarefas</title>
+</head>
+<body>
+<%@include file="navigation.jspf"%>

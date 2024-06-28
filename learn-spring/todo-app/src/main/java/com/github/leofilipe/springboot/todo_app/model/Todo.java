@@ -2,10 +2,15 @@ package com.github.leofilipe.springboot.todo_app.model;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Size;
+
 public class Todo {
 
 	private int id;
 	private String username;
+	
+	//see jakarta.validation.constraints package in jakarta validation api
+	@Size(min=10, message="A descrição deve ter no mínimo 10 caracteres!")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
