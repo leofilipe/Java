@@ -1,6 +1,7 @@
 
 
 <%@include file="common/header.jspf"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="container">
 	<h3>Bem-vindo ${name}!</h3>
 	<hr />

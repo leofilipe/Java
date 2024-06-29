@@ -26,7 +26,8 @@ public class TodoService {
 
 	public List<Todo> findByUsername(String username) {
 
-		return todos;
+		Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
+		return todos.stream().filter(predicate).toList();
 	}
 
 	public Todo findById(int id) {
@@ -54,7 +55,7 @@ public class TodoService {
 
 		Predicate<? super Todo> predicate = aTodo -> aTodo.getId() == todo.getId();
 		Todo aTodo = todos.stream().filter(predicate).findFirst().get();
-		
+
 		aTodo.setDescription(todo.getDescription());
 		aTodo.setTargetDate(todo.getTargetDate());
 

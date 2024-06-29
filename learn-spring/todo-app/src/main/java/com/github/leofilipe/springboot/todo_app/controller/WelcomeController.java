@@ -1,5 +1,7 @@
 package com.github.leofilipe.springboot.todo_app.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +18,16 @@ public class WelcomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String gotoWelcomePage(ModelMap model) {
 
-		model.put("name", "leo");
+		model.put("name", this.getLoggedUsername());
 		return "welcome";
 	}
 
+	private String getLoggedUsername() {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		return auth.getName();
+	}
 	/*
 	 * @RequestMapping(value = "login", method = RequestMethod.POST) public String
 	 * gotoWelcomePage(@RequestParam String name, @RequestParam String password,
