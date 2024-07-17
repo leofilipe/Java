@@ -24,6 +24,9 @@ import jakarta.validation.Valid;
 public class TodoControllerJpa {
 
 	private TodoRepository todoRepository;
+	// private TodoService todoService;
+	// removed from attribute list and from Constructor as TodoRepository replaces
+	// the static list of TodoService for DB capabilities
 
 	public TodoControllerJpa(TodoRepository todoRepository) {
 		super();

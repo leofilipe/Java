@@ -11,7 +11,7 @@ import com.github.leofilipe.springboot.todo_app.model.Todo;
 
 import jakarta.validation.Valid;
 
-@Service
+@Service //THIS CLASS WAS IN USE WHEN IT WAS A STATIC REPOSITORY
 public class TodoService {
 
 	private static List<Todo> todos = new ArrayList<Todo>();

@@ -7,9 +7,14 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component // NO DATABASE YET. WILL BE IMPLEMENTED LATER.
+//REPLACE BY SERVICE LATER? 
+//OR BETTER, HAVE A SERVICE CLASS TO CALL THIS INSTEAD OF 
+//STRAIGHT FROM USERRESOURCE
 public class UserDaoService {
 
+	// JPA/Hibernate > Database
+	// UserDaoService > Static List
 	private static List<User> users = new ArrayList<>();
 
 	private static int usersCount = 0;
@@ -37,8 +42,8 @@ public class UserDaoService {
 		Predicate<? super User> predicate = user -> user.getId().equals(id);
 
 		users.removeIf(predicate);
-		
-		//return users.stream().filter(predicate).findFirst().orElse(null);
+
+		// return users.stream().filter(predicate).findFirst().orElse(null);
 	}
 
 	public User save(User user) {
