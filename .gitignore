@@ -135,6 +135,10 @@ local.properties
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
 
+#Custom project folders to ignore for Eclipse IDE
 /.metadata/
 /*
 !/learn-spring/
+
+#npm node modules to ignore within project
+/learn-spring/react/node_modules/*
