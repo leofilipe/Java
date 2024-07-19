@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.github.leofilipe.rest.webservices.restful_web_services.user.exception.UserNotFoundException;
+import com.github.leofilipe.rest.webservices.restful_web_services.user.model.User;
 
 import jakarta.validation.Valid;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+//lacks use after introduction of JPA to project
 @RestController
 public class UserResource {
 

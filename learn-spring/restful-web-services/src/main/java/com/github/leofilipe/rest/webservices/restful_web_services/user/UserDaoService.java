@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
+import com.github.leofilipe.rest.webservices.restful_web_services.user.model.User;
+
 @Component // NO DATABASE YET. WILL BE IMPLEMENTED LATER.
 //REPLACE BY SERVICE LATER? 
 //OR BETTER, HAVE A SERVICE CLASS TO CALL THIS INSTEAD OF 
