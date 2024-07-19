@@ -140,5 +140,5 @@ local.properties
 /*
 !/learn-spring/
 
-#npm node modules to ignore within project
-/learn-spring/react/node_modules/*
+#ignore npm /node_modules within any project folder
+**/node_modules/
