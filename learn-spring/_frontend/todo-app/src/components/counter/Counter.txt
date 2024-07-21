@@ -1,0 +1,35 @@
+import './Counter.css'
+
+
+export default function Counter(){
+
+    
+    /*const buttonStyle = {
+        fontSize:'30px',
+        backgroundColor:'#00a5ab',
+        width:'100px',
+        margin: '10px',
+        color:'white',
+        padding:'15px', //extra space within an element. Margin: extra space around an element
+        borderRadius:'30px'
+
+    }*/
+
+    function incrementCounterFunction(){
+        console.log('increment clicked')
+    }
+
+    return (
+        <div className="Counter">
+            <span className="count">0</span>
+            <div>
+                <button className="counterButton" 
+                    onClick={incrementCounterFunction}
+                        //style={buttonStyle} //when creating a style object within the component
+                        //{{fontSize:'30px'}}//unlike real css, node uses capital letter instead of hifens
+                                             //when inline, styling uses two pairs of brackets 
+                    >+1</button>
+            </div>
+        </div>
+    )
+}
