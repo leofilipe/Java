@@ -7,6 +7,9 @@ import ResetButton from "./ResetButton";
 
 export default function Counter(){
 
+    //state is  an array so that [value, function]
+    //const state = useState(0);
+    //hence, to simplify its use better use an approach such as
     const [count, setCount] = useState(0);
 
     function incrementTotalCounter(by){
@@ -27,48 +30,3 @@ export default function Counter(){
         </div>
     )
 }
-
-// function CounterButton({by = 1, incrementMethod}){
-//     const [count, setCount] = useState(0);
-    
-//     console.log(by)
-
-//     function incrementCounterFunction(){
-
-//         setCount(count+by)
-
-//         incrementMethod(by)
-
-//         console.log(count)
-//     }
-
-//     function decrementCounterFunction(){
-//         setCount(count-by)
-        
-//         incrementMethod(-by)
-
-//         console.log(count)
-//     }
-
-//     return (
-//         <div className="Counter">
-//             <span className="count">{count}</span>
-//             <div>
-//                 <span>
-//                     <button className="counterButton" 
-//                         onClick={incrementCounterFunction}
-//                         >+{by}</button>
-//                 </span>
-//                 <span>
-//                     <button className='counterButton'
-//                         onClick={decrementCounterFunction}>-{by}</button>
-//                 </span>
-//             </div>
-//         </div>
-//     )
-// }
-
-// CounterButton.propTypes = {
-
-//     by: PropTypes.number
-// }
