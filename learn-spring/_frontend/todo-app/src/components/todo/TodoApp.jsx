@@ -11,8 +11,8 @@ export default function TodoApp(){
     return (
         <div className="TodoApp">
 
-            <HeaderComponent/>
             <BrowserRouter>
+                <HeaderComponent/>
                 <Routes>
                     <Route path="/" element={<LoginComponent/>}/>
                     <Route path="/login" element={<LoginComponent/>}/>
@@ -23,10 +23,8 @@ export default function TodoApp(){
 
                     <Route path="*" element={<ErrorComponent/>}/>
                 </Routes>
+                <FooterComponent/>
             </BrowserRouter>
-            <FooterComponent/>
         </div>
     )
-
-    
 }
