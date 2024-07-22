@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 
 export default function LoginComponent(){
+
+    const navigate = useNavigate();
 
     const[username, setUsername] = useState('leo');
     const[password, setPassword] = useState('');
@@ -28,6 +31,8 @@ export default function LoginComponent(){
         if(username==='leo' && password==='dummy'){      
             setAuthenticated(true)
             setAuthenticationError(false)
+
+            navigate(`/welcome/${username}`)//use ticks (crases)
         }else{
             setAuthenticated(false)
             setAuthenticationError(true)
