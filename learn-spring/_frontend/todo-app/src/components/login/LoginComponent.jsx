@@ -84,3 +84,12 @@ export default function LoginComponent(){
         </div>
     )
 }
+
+export function LogoutComponent(){
+    return (
+        <div className="Logout">
+            <h1>You have logged out!</h1>
+            <div>Please come back soon!</div>
+        </div>
+    )
+}
