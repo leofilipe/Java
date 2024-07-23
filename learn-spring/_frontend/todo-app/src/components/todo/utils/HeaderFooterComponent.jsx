@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../security/AuthContex"
-//import { useContext } from "react"
 
 export function FooterComponent(){
     return(
@@ -16,14 +15,9 @@ export function FooterComponent(){
 
 export default function HeaderComponent(){
 
-    //const authContext = useContext(AuthContext) //moved to AuthContext and retrieved from it
-
-    const authContext = useAuth();
-    const isAuthenticated = authContext.isAuthenticated;
-    const username = authContext.username;
-
-    //console.log(authContext)
-    //console.log(`Context value: ${authContext.number}`)
+    const authContext = useAuth()
+    const isAuthenticated = authContext.isAuthenticated
+    const username = authContext.username
 
     return (
         <header className="border-bottom border-light border-5 mb-5 p-2">
