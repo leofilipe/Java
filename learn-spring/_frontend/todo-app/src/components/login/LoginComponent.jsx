@@ -1,5 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { useState } from "react"
+import { useAuth } from "../todo/security/AuthContex";
+
+export function LogoutComponent(){
+    
+    const authContext = useAuth();
+
+    authContext.setAuthenticated(false)
+    authContext.setUsername('');
+
+    //redirect("/")
+
+    //setInterval(()=> redirect("/"), 5000) //updates the state every 5s
+
+    return (
+        <div className="Logout">
+            <h1>You have logged out!</h1>
+            <div>Please come back soon!</div>
+            <div>Redirecting to Login in 5s</div>
+        </div>
+    )
+}
 
 export default function LoginComponent(){
 
@@ -8,20 +29,25 @@ export default function LoginComponent(){
     const[username, setUsername] = useState('leo');
     const[password, setPassword] = useState('');
 
-    const[authenticated, setAuthenticated] = useState(false);
+    //const[authenticated, setAuthenticated] = useState(false);
     const[authenticationError, setAuthenticationError] = useState(false);
+
+    const authContext = useAuth();
+    
+
+    //console.log(authContext);
 
     function handleUsernameChange(event){
 
         let newValue = event.target.value;
 
-        console.log(newValue)
+        //console.log(newValue)
         setUsername(newValue)
     }
 
     function handlePasswordChange(event){
         let newValue = event.target.value;
-        console.log(newValue)
+        //console.log(newValue)
         setPassword(newValue)
 
     }
@@ -29,16 +55,22 @@ export default function LoginComponent(){
     function handleSumbit(){
         
         if(username==='leo' && password==='dummy'){      
-            setAuthenticated(true)
+            //setAuthenticated(true)
             setAuthenticationError(false)
 
+            authContext.setAuthenticated(true)
+            authContext.setUsername(username)
+
+            //console.log(`success!! ${authContext.isAuthenticated} logged in!`)
             navigate(`/welcome/${username}`)//use ticks (crases)
         }else{
-            setAuthenticated(false)
+            //setAuthenticated(false)
             setAuthenticationError(true)
+            authContext.setAuthenticated(false)
+            authContext.setUsername('')
         }
 
-        console.log(authenticated)
+        //console.log(authContext.authenticated)
     }
 
     // function SuccessMessageComponent(){
@@ -66,7 +98,7 @@ export default function LoginComponent(){
             {/* <SuccessMessageComponent/>
             <FailMessageComponent/> */}
 
-            {authenticated && <div className="successMessage">Authenticated Successfully</div>}
+            {authContext.authenticated && <div className="successMessage">Authenticated Successfully</div>}
             {authenticationError && <div className="errorMessabe">Authenticated failed. Please check your credentials</div>}
             <div className="LoginForm">
                 <div>
@@ -81,15 +113,6 @@ export default function LoginComponent(){
                     <button type="button" name="login" onClick={handleSumbit}>Login</button>
                 </div>
             </div>
-        </div>
-    )
-}
-
-export function LogoutComponent(){
-    return (
-        <div className="Logout">
-            <h1>You have logged out!</h1>
-            <div>Please come back soon!</div>
         </div>
     )
 }

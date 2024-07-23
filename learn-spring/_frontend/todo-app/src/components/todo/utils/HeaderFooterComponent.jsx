@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import { AuthContext } from "../security/AuthContex"
-import { useContext } from "react"
+import { useAuth } from "../security/AuthContex"
+//import { useContext } from "react"
 
 export function FooterComponent(){
     return(
@@ -16,10 +16,14 @@ export function FooterComponent(){
 
 export default function HeaderComponent(){
 
-    const authContext = useContext(AuthContext)
+    //const authContext = useContext(AuthContext) //moved to AuthContext and retrieved from it
 
-    //console.log(authContext.number)
-    console.log(`Context value: ${authContext.number}`)
+    const authContext = useAuth();
+    const isAuthenticated = authContext.isAuthenticated;
+    const username = authContext.username;
+
+    //console.log(authContext)
+    //console.log(`Context value: ${authContext.number}`)
 
     return (
         <header className="border-bottom border-light border-5 mb-5 p-2">
@@ -30,21 +34,31 @@ export default function HeaderComponent(){
                             href="https://github.com/leofilipe/Java/tree/learn-spring">LeoFilipe Java GitHub</a>
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav">
-                                <li className="nav-item fs-5">
-                                    <Link  className="nav-link" to="/welcome/leo">Home</Link>
-                                </li>
-                                <li className="nav-item fs-5">
-                                    <Link  className="nav-link" to="/todos/leo">Todos</Link>
-                                </li>
+                                {
+                                isAuthenticated && 
+                                    <>
+                                        <li className="nav-item fs-5">
+                                            <Link  className="nav-link" to={`/welcome/${username}`}>Home</Link>
+                                        </li>
+                                        <li className="nav-item fs-5">
+                                            <Link  className="nav-link" to={`/todos/${username}`}>Todos</Link>
+                                        </li>
+                                    </>
+                                }
+                                
                             </ul>
                         </div>
                         <ul className="navbar-nav">
-                            <li className="nav-item fs-5">
-                                <Link  className="nav-link" to="/logout">Logout</Link>
-                            </li>
-                            <li className="nav-item fs-5">
-                                <Link  className="nav-link" to="/">Login</Link>
-                            </li>
+                            {!isAuthenticated &&
+                                <li className="nav-item fs-5">
+                                    <Link  className="nav-link" to="/">Login</Link>
+                                </li>
+                            }
+                            {isAuthenticated &&
+                                <li className="nav-item fs-5">
+                                    <Link  className="nav-link" to="/logout">Logout</Link>
+                                </li>
+                            }
                         </ul>
                     </nav>
                 </div>

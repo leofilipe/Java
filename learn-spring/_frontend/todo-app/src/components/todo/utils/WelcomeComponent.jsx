@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom"
 export default function WelcomeComponent(){
 
     const {username} = useParams();
-    console.log(username);
+    //console.log(username);
     //const url = `/todos/${username}`;
 
     return(
