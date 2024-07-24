@@ -22,7 +22,9 @@ public class SpringSecurityConfiguration {
 		
 		//1- All requests should be authenticated
 		http.authorizeHttpRequests(
-				auth-> auth.anyRequest().authenticated()
+				auth-> auth.anyRequest().permitAll()
+				//disabled for now for talking to react without credentials
+				//authenticated()
 				);
 		//2- If a request is not authenticated, a web page is shown
 		http.httpBasic(withDefaults());
