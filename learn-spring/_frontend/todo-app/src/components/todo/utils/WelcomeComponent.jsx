@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import { retrieveHelloWorldBean, retrieveHelloWorldPathVariable } from "../api/HelloWorldApiService"
 
 export default function WelcomeComponent(){
 
@@ -8,17 +8,20 @@ export default function WelcomeComponent(){
 
     const[message, setMessage] = useState(null)
 
-    function callHelloWorldRestApi(){
+    function callHelloWorldRestApiPath(username){
 
-        console.log("hello world works!")
-        axios.get("http://localhost:8080/hello-world")
+        console.log("hello world Path works!")
+        retrieveHelloWorldPathVariable("leo")//retrieveHelloWorldPathVariable(username)
+        // axios.get("http://localhost:8080/hello-world")
             .then((response) => successfullResponse(response))
             .catch((error) => errorResponse(error))
             .finally(() => console.log('cleanup'))
     }
 
     function callHelloWorldBeanRestApi(){
-        axios.get("http://localhost:8080/hello-world-bean")
+        console.log("hello world Api works!")
+        retrieveHelloWorldBean()
+        // axios.get("http://localhost:8080/hello-world")
             .then((response) => successfullResponse(response))
             .catch((error) => errorResponse(error))
             .finally(() => console.log("clean up bean"))
@@ -45,13 +48,13 @@ export default function WelcomeComponent(){
             <div><h1>Welcome {username}</h1></div>
             <div><h3><Link to={`/todos/${username}`}>Manage are your todos</Link></h3></div>
             <div>
-                <button className="btn btn-success" onClick={callHelloWorldRestApi}>
-                    Call Hello World
+                <button className="btn btn-success" onClick={callHelloWorldBeanRestApi}>
+                    Call Hello Bean
                 </button>
             </div>
             <div>
-                <button className="btn btn-success" onClick={callHelloWorldBeanRestApi}>
-                    Call Hello Bean
+                <button className="btn btn-success" onClick={callHelloWorldRestApiPath}>
+                    Call Hello Bean Path
                 </button>
             </div>
             <div className="text-info">{message}</div>
