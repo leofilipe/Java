@@ -12,7 +12,7 @@ export default function AuthProvider({children}){ //"destructuring":
     //Put context in the context
     const[isAuthenticated, setAuthenticated] = useState(false)
 
-    const[username, setUsername] = useState('');
+    const[username, setUsername] = useState(null);
 
     //passes an object as an argument whilse using only its desired named properties.  
     //const sharedValue = {number, isAuthenticated, setAuthenticated}
@@ -32,7 +32,7 @@ export default function AuthProvider({children}){ //"destructuring":
             return true
         }else{
             setAuthenticated(false)
-            setUsername('')
+            setUsername(null)
 
             return false
         }

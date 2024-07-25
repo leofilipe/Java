@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
-import { apiDeleteTodo, apiRetrieveAllTodosForUsername } from './api/TodoApiSercice';
+import { useCallback, useEffect, useState } from 'react';
+import { apiDeleteTodo, apiRetrieveAllTodosForUsername } from './api/TodoApiService';
+import { useAuth } from './security/AuthContex';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListTodosComponent(){
 
@@ -7,9 +9,16 @@ export default function ListTodosComponent(){
     //const today = new Date();
     //const targetDate = new Date(today.getFullYear()+ 12, today.getMonth(), today.getDay());
 
-    const[todos, setTodos] = useState([])
+    const[todos, setTodos] = useState([]) //destructuring assign for array
 
-    const[message, setMessage] = useState(null)
+    const[message, setMessage] = useState(null) //destructuring assign for array
+
+    const navigate = useNavigate()
+
+    const authContext = useAuth()
+
+    const username = authContext.username
+    
 
     /*useEffect(() => {refreshTodos()}, []) 
     //In thesis, as there are no dependencies to load, we pass an empty list [] to the method
@@ -30,29 +39,37 @@ export default function ListTodosComponent(){
     //There are two solutions. 
     //1. Declare/implement refreshTodos inside useEffect. This works, but prevents external calls to refreshTodos
     //2. Wrap updateCount in a useCallback hook (not working)
-   
-    // const refreshTodos = useCallback(() => {
-    //     apiRetrieveAllTodosForUsername('leo')
-    //     .then(response => 
-    //         {
-    //             setTodos(response.data)
-    //             //console.log(`todos atualizados ${todos}`)
-    //         }
-    //     )
-    //     .catch(error => console.log(error))
-    // }, [])
-    
-    //alternatively it seems to be working in response to changes in todo, leave like this for a while to check
-    useEffect(() => {refreshTodos()}, [todos]) 
-    
-    function refreshTodos(){
-        apiRetrieveAllTodosForUsername('leo')
-        .then( response => 
+    const refreshTodos = useCallback(() => {
+        apiRetrieveAllTodosForUsername(username)
+        .then(response => 
             {
-                setTodos(response.data)            }
+                setTodos(response.data)
+            }
         )
         .catch(error => console.log(error))
+    }, [username])
+
+    useEffect(() => {refreshTodos()}, [refreshTodos, todos]) 
+    
+    //alternatively it seems to be working in response to changes in todo, leave like this for a while to check
+    //useEffect(() => {refreshTodos()}, [todos]) 
+    //the above line had to be changed to useEffect((username) => {refreshTodos()}, [todos, username]). This raised no
+    //and seemed to be a fine option too, in conjunction with
+    // function refreshTodos(username){
+    //     apiRetrieveAllTodosForUsername(username)
+    //     .then( response => 
+    //         {
+    //             setTodos(response.data)            }
+    //     )
+    //     .catch(error => console.log(error))
+    // }
+
+    
+    function updateTodo(id){
+        console.log('clicked ' + id)
+        navigate(`/todos/${username}/todo/${id}`)
     }
+    
 
     function deleteTodo(id){
         console.log('cliked '+ id)
@@ -60,8 +77,7 @@ export default function ListTodosComponent(){
         apiDeleteTodo('leo', id)
             .then(
                 refreshTodos(),
-                setMessage(`Success deleting of todo with id = ${id}!`)
-                
+                setMessage(`Success deleting of todo with id = ${id}!`)                
             )
             .catch(error => console.log(error))
     }
@@ -84,6 +100,7 @@ export default function ListTodosComponent(){
                             <th>Is done?</th>
                             <th>Target date</th>
                             <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,6 +116,11 @@ export default function ListTodosComponent(){
                                         <button className='btn btn-danger'
                                             onClick={() => deleteTodo (todo.id)}>
                                             Delete</button>
+                                    </td>
+                                    <td>
+                                        <button className='btn btn-primary'
+                                            onClick={() => updateTodo(todo.id)}>
+                                            Update</button>
                                     </td>
                                 </tr>
                             )
