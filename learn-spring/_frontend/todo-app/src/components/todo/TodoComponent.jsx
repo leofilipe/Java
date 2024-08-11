@@ -1,10 +1,13 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "./security/AuthContex"
-import { apiRetriveTodoForUsername } from "./api/TodoApiService";
+import { apiCreateTodo, apiRetriveTodoForUsername, apiUpdateTodo } from "./api/TodoApiService";
 import { useCallback, useEffect, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import moment from "moment";
 
 export default function TodoComponent(){
+
+    const navigate = useNavigate();
 
     const authContext = useAuth()
 
@@ -17,13 +20,15 @@ export default function TodoComponent(){
     const[targetDate, setTargetDate] = useState('')
 
     const retriveTodoForUsername = useCallback(() => {
-        apiRetriveTodoForUsername(username, id)
+       if(id > 0){
+            apiRetriveTodoForUsername(username, id)
             .then(response => {
                 console.log(response)
                 setDescription(response.data.description)
                 setTargetDate(response.data.targetDate)
             })
             .catch(error => console.log(error))
+       }
     }, [username, id])
 
     useEffect(
@@ -35,6 +40,32 @@ export default function TodoComponent(){
 
         console.log('save triggered')
         console.log(values)
+
+        //object fields should have the same name as in the backend object to ensure mappig
+        const todo = {
+            id: id,
+            username: username,
+            description: values.description,
+            targetDate: values.targetDate,
+            done: false
+        }
+
+        console.log(todo)
+        
+        if(id > 0){
+            apiUpdateTodo(username, id, todo)
+                .then(response => {
+                    console.log(response)
+                    navigate(`/todos/${username}`)
+                })
+                .catch(error => console.log(error))
+        }else{
+            apiCreateTodo(username, todo)
+                .then(response => {
+                    navigate(`/todos/${username}`)
+                })
+                .catch(error => console.log)
+        }
     }
 
     function validateFields(values){
@@ -49,7 +80,9 @@ export default function TodoComponent(){
             errors.description = 'Descriptions should be at least 5 characters long'
         }
 
-        if(values.targetDate == null){
+        if(values.targetDate == null || values.targetDate===''
+            || !moment(values.targetDate).isValid()
+        ){
             errors.targetDate = 'A todo must have a future target date'
         }
 

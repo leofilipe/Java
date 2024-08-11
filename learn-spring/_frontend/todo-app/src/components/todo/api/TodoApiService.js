@@ -13,3 +13,9 @@ export const apiRetriveTodoForUsername =
 
 export const apiDeleteTodo = 
     (username, id) => apiClient.delete(`/users/${username}/todos/${id}`)
+
+export const apiUpdateTodo =
+    (username, id, todo) => apiClient.put(`/users/${username}/todos/${id}`, todo /*returned as the body of the request*/)
+
+export const apiCreateTodo =
+    (username, todo) => apiClient.post(`/users/${username}/todos`, todo /*returned as the body of the request*/)

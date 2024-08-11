@@ -64,6 +64,9 @@ export default function ListTodosComponent(){
     //     .catch(error => console.log(error))
     // }
 
+    function addNewTodo(){
+        navigate(`/todos/${username}/todo/-1`)
+    }
     
     function updateTodo(id){
         console.log('clicked ' + id)
@@ -91,6 +94,7 @@ export default function ListTodosComponent(){
         <div className='container'>
             <h1>Things You Want To Do!</h1>
             {message && <div className='alert alert-warning'>{message}</div>} {/* shows only if message is not null */}
+            <div className='btn btn-success m-5' onClick={addNewTodo}>Add new todo</div>
             <div>
                 <table className='table'>
                     <thead>
